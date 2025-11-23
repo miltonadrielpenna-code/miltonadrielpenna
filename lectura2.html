@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reseña · Título del libro</title>
+
+  <style>
+    :root {
+      --bg: #050509;
+      --card: #11111a;
+      --accent: #f5e3b3;
+      --accent-soft: rgba(245, 227, 179, 0.2);
+      --text: #e5e5e5;
+      --text-soft: #b3b3b3;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Georgia", serif;
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    nav {
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      margin-right: 1rem;
+      font-weight: bold;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      color: var(--accent);
+      margin-top: 0;
+      font-size: 2rem;
+    }
+
+    .book-meta {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Menú (el mismo de tu web) -->
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="cuentos.html">Cuentos</a>
+    <a href="articulos.html">Artículos</a>
+    <a href="tesina.html">Tesina</a>
+    <a href="sobre-libros.html">Sobre libros</a>
+  </nav>
+
+  <article class="card">
+    <h1>Título del libro</h1>
+    <span class="book-meta">Autor/a · Editorial · Año / Género</span>
+
+    <p>
+      Acá va tu reseña personal. Podés hablar de lo que te llamó la atención,
+      el contexto en que lo leíste, qué te disparó a nivel creativo o emocional,
+      cómo se relaciona con otros libros que mencionaste en la web, o por qué
+      sentís que encaja en tu imaginario literario.
+    </p>
+
+    <p>
+      También es un espacio para desarrollar tu voz como corrector y escritor:
+      podés analizar estilo, estructura, tono, atmósfera, decisiones narrativas
+      o cualquier lectura transversal que quieras mostrar en tu web.
+    </p>
+
+    <p>
+      Si querés incluir citas breves, las puedo formatear de forma elegante.
+    </p>
+  </article>
+</body>
+</html>

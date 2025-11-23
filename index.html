@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Milton Adriel Penna · Escritura y corrección</title>
+
+  <!-- Fuente serif más autoral -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050509;
+      --bg-soft: #090914;
+      --card: #11111a;
+      --card-soft: #181822;
+      --accent: #f5e3b3;
+      --accent-soft: rgba(245, 227, 179, 0.1);
+      --accent-strong: #f7d77a;
+      --text-main: #f7f7ff;
+      --text-muted: #a0a0b8;
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --shadow-soft: 0 20px 45px rgba(0, 0, 0, 0.7);
+      --radius-card: 24px;
+      --radius-pill: 999px;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Helvetica Neue", Arial, sans-serif;
+      --font-serif: "Cormorant Garamond", serif;
+      --transition-fast: 0.18s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, #18182b 0, #050509 45%) fixed,
+        var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding: 96px 16px 64px;
+      display: flex;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1040px;
+    }
+
+    /* ---------------- MENÚ SUPERIOR ---------------- */
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(5, 5, 12, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-soft);
+      padding: 10px 0;
+      z-index: 30;
+    }
+
+    .navbar-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .navbar-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .navbar-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 14px;
+      white-space: nowrap;
+    }
+
+    .navbar-list a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition:
+        background var(--transition-fast),
+        color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .navbar-list a:hover {
+      background: rgba(245, 227, 179, 0.12);
+      color: var(--accent-strong);
+      box-shadow: 0 0 0 1px rgba(245, 227, 179, 0.25);
+      border-color: rgba(245, 227, 179, 0.25);
+    }
+
+    .navbar-list a.active {
+      background: rgba(245, 227, 179, 0.12);
+      color: var(--accent-strong);
+      border-color: rgba(245, 227, 179, 0.45);
+      box-shadow: 0 0 0 1px rgba(245, 227, 179, 0.45);
+    }
+
+    /* Puntos separadores del menú */
+    .navbar-list li::before {
+      content: "•";
+      color: var(--accent);
+      margin: 0 6px 0 2px;
+    }
+
+    .navbar-list li:first-child::before {
+      content: "";
+    }
+
+    /* ---------------- BANNER ---------------- */
+
+    .banner {
+      width: 100%;
+      border-radius: 26px;
+      overflow: hidden;
+      margin-bottom: 26px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      background: #050509;
+    }
+
+    .banner-img {
+      width: 100%;
+      max-height: 360px;
+      object-fit: cover;
+      filter: brightness(0.95) contrast(1.05);
+      transform: scale(1.02);
+    }
+
+    /* ---------------- HERO (estilo similar a Clases) ---------------- */
+
+    header {
+      border-radius: 30px;
+      padding: 30px 28px 32px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        radial-gradient(circle at top left, rgba(245, 227, 179, 0.10), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(98, 89, 255, 0.28), transparent 55%),
+        linear-gradient(135deg, #050509, #08081a, #0b0b21);
+    }
+
+    .header-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 1020px; /* más ancho para que todo entre en una línea */
+      white-space: nowrap; /* evita que se corten título y badge */
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(245, 227, 179, 0.6);
+      background: rgba(5, 5, 9, 0.75);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      backdrop-filter: blur(12px);
+      white-space: nowrap; /* el badge completo en un renglón */
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(245, 227, 179, 0.9);
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: clamp(2.2rem, 4vw, 2.8rem); /* mismo tamaño que antes */
+      letter-spacing: 0.04em;
+      white-space: nowrap; /* mantiene el título en un solo renglón */
+    }
+
+    .hero-divider {
+      width: 56px;
+      height: 1px;
+      background: rgba(245, 227, 179, 0.55);
+      margin: 6px 0 14px;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-sans); /* <- ahora igual que las otras secciones */
+      font-size: 15px;
+      color: var(--accent);
+      max-width: 520px;
+      white-space: normal; /* acá sí puede cortar */
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+      white-space: normal;
+    }
+
+    .hero-tag {
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(5, 5, 12, 0.78);
+      color: var(--text-muted);
+      text-transform: none;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-tag--accent {
+      border-color: rgba(245, 227, 179, 0.7);
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    /* ---------------- MAIN ---------------- */
+
+    main.layout {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.2fr);
+      gap: 22px;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .card {
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(135deg, var(--card), #0b0b14);
+      padding: 20px;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.78);
+    }
+
+    .card h2 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      font-family: var(--font-serif);
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #d6d6e6;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      background: rgba(9, 9, 18, 0.9);
+    }
+
+    .tag--accent {
+      border-color: rgba(245, 227, 179, 0.7);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    /* ---------------- CONTACTO (links dorados) ---------------- */
+
+    .contact a {
+      text-decoration: none;
+      color: var(--accent);
+      border-bottom: 1px solid rgba(245, 227, 179, 0.45);
+      padding-bottom: 1px;
+      transition:
+        color var(--transition-fast),
+        border-color var(--transition-fast);
+      word-break: break-word;
+    }
+
+    .contact a:hover {
+      color: var(--accent-strong);
+      border-color: var(--accent-strong);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .contact-item-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    /* ---------------- CITA T. S. ---------------- */
+
+    .card-quote {
+      padding-top: 18px;
+      padding-bottom: 18px;
+      background: #050509;
+    }
+
+    .quote-dark {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 90%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quote-divider {
+      width: 46px;
+      height: 1px;
+      background: rgba(245, 227, 179, 0.45);
+      margin: 0 auto 12px;
+    }
+
+    .quote-author {
+      margin-top: 8px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: right;
+      padding-right: 6px;
+    }
+
+    /* ---------------- NOTA PERSONAL ---------------- */
+
+    .note-personal {
+      margin-top: 26px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    /* ---------------- BOTÓN VOLVER ARRIBA ---------------- */
+
+    .back-to-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      padding: 8px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-soft);
+      background: rgba(5, 5, 12, 0.92);
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(6px);
+      transition:
+        opacity var(--transition-fast),
+        transform var(--transition-fast),
+        background var(--transition-fast),
+        color var(--transition-fast),
+        border-color var(--transition-fast);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7);
+      z-index: 40;
+    }
+
+    .back-to-top--visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    footer {
+      margin-top: 18px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      text-align: center;
+      opacity: 0.85;
+    }
+
+    /* ---------------- RESPONSIVE ---------------- */
+
+    @media (max-width: 720px) {
+      .navbar-list {
+        gap: 10px;
+      }
+
+      .navbar-list a {
+        font-size: 12px;
+        padding: 5px 7px;
+      }
+
+      header {
+        padding: 24px 18px 26px;
+      }
+
+      .header-inner {
+        max-width: 100%;
+        white-space: normal; /* en móvil dejamos que corte para que no desborde */
+      }
+
+      h1 {
+        white-space: normal;
+      }
+
+      .hero-subtitle {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Menú superior -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <ul class="navbar-list">
+        <li><a href="index.html" class="active">Inicio</a></li>
+        <li><a href="cuentos.html">Cuentos</a></li>
+        <li><a href="articulos.html">Artículos</a></li>
+        <li><a href="tesina.html">Tesina</a></li>
+        <li><a href="sobrelibros.html">Sobre libros</a></li>
+        <li><a href="servicios.html">Servicios de corrección</a></li>
+        <li><a href="clases.html">Clases de escritura creativa</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Botón Volver arriba -->
+  <button class="back-to-top" id="backToTop" type="button">
+    Volver arriba
+  </button>
+
+  <div class="page">
+    <!-- Banner -->
+    <div class="banner">
+      <img src="kuitca-banner.jpg" class="banner-img" alt="Banner pictórico de Guillermo Kuitca">
+    </div>
+
+    <!-- Hero -->
+    <header>
+      <div class="header-inner">
+        <span class="badge">
+          <span class="dot"></span>
+          MILTON ADRIEL PENNA · ESCRITURA Y CORRECCIÓN
+        </span>
+
+        <h1>Escritura, corrección y lecturas.</h1>
+
+        <div class="hero-divider"></div>
+
+        <p class="hero-subtitle">
+          Un portal web a mi imaginario.
+        </p>
+
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="layout">
+
+      <!-- Columna izquierda -->
+      <section class="column">
+
+        <article class="card">
+          <h3>Sobre mí</h3>
+          <p>
+            Soy Milton: escritor, corrector de textos y lector obsesivo. Este sitio reúne mis ficciones,
+            mis artículos culturales, reseñas de libros y muestras de procesos creativos.
+          </p>
+          <p>
+            También encontrarás mis servicios de corrección e información sobre las clases de escritura.
+          </p>
+        </article>
+
+        <article class="card">
+          <h2>Mi enfoque</h2>
+          <h3>La escritura como expresión</h3>
+          <p>
+            Trabajo con una mirada cuidadosa y sensible: tanto en mis textos como en los que acompaño.
+            Me interesa la intención: qué se quiere decir y pensar en la mejor forma de hacerlo.
+          </p>
+          <p>
+            Si tenés un cuento, un artículo, un trabajo académico o un proyecto todavía en borrador, podemos verlo juntos.
+          </p>
+
+          <div class="tag-row">
+            <span class="tag tag--accent">Corrección y lectura crítica</span>
+            <span class="tag">Acompañamiento creativo</span>
+            <span class="tag">Escritura personal</span>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- Columna derecha -->
+      <aside class="column">
+        <article class="card card-contact">
+          <h2>Contacto</h2>
+          <h3>Podés escribirme</h3>
+          <p>
+            Para mostrarme un proyecto, pedir presupuesto o coordinar clases, podés contactarme por correo o Instagram.
+          </p>
+
+          <div class="contact-grid contact">
+            <div>
+              <div class="contact-item-title">Correo</div>
+              <a href="mailto:miltonadrielpenna@gmail.com">miltonadrielpenna@gmail.com</a>
+            </div>
+            <div>
+              <div class="contact-item-title">Instagram</div>
+              <a href="https://www.instagram.com/miltonadrielpenna" target="_blank">@miltonadrielpenna</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Cita -->
+        <article class="card card-quote">
+          <div class="quote-dark">
+            <div class="quote-divider"></div>
+            “Welcome to my underworld where it gets quite dark.<br>
+            At least you know exactly who your friends are.<br>
+            They're the ones with matching scars.”
+            <div class="quote-author">T. S.</div>
+          </div>
+        </article>
+      </aside>
+    </main>
+
+    <div class="note-personal">
+      Escribo desde Buenos Aires. Desde mi casa. Desde mis obsesiones.
+    </div>
+
+    <footer>© <span id="year"></span> Milton Adriel Penna · Escritura y corrección</footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const backToTopBtn = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("back-to-top--visible");
+      } else {
+        backToTopBtn.classList.remove("back-to-top--visible");
+      }
+    });
+
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+
+</body>
+</html>

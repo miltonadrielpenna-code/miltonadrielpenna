@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artículos · Milton Adriel Penna</title>
+
+  <!-- Fuente serif -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050509;
+      --bg-soft: #090914;
+      --card: #11111a;
+      --card-soft: #181822;
+      --accent: #f5e3b3;
+      --accent-soft: rgba(245,227,179,.1);
+      --accent-strong: #f7d77a;
+      --text-main: #f7f7ff;
+      --text-muted: #a0a0b8;
+      --border-soft: rgba(255,255,255,0.08);
+      --shadow-soft: 0 20px 45px rgba(0,0,0,0.7);
+      --radius-card: 24px;
+      --radius-pill: 999px;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Helvetica Neue", Arial, sans-serif;
+      --font-serif: "Cormorant Garamond", serif;
+      --transition-fast: .18s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #18182b 0, #050509 45%) fixed, var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding: 96px 16px 64px;
+      display: flex;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1040px;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(5, 5, 12, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-soft);
+      padding: 10px 0;
+      z-index: 30;
+    }
+
+    .navbar-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .navbar-inner::-webkit-scrollbar { display: none; }
+
+    .navbar-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 14px;
+      white-space: nowrap;
+    }
+
+    .navbar-list li::before {
+      content: "•";
+      color: var(--accent);
+      margin: 0 6px 0 2px;
+    }
+
+    .navbar-list li:first-child::before { content: ""; }
+
+    .navbar-list a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 5px 8px;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition: background .18s, color .18s, box-shadow .18s, border-color .18s;
+      border: 1px solid transparent;
+    }
+
+    .navbar-list a:hover {
+      background: rgba(245,227,179,0.12);
+      color: var(--accent-strong);
+      border-color: rgba(245,227,179,0.25);
+      box-shadow: 0 0 0 1px rgba(245,227,179,0.25);
+    }
+
+    .navbar-list a.active {
+      background: rgba(245,227,179,0.12);
+      color: var(--accent-strong);
+      border-color: rgba(245,227,179,0.45);
+      box-shadow: 0 0 0 1px rgba(245,227,179,0.45);
+    }
+
+    /* BANNER */
+    .banner {
+      width: 100%;
+      border-radius: 26px;
+      overflow: hidden;
+      margin-bottom: 26px;
+      border: 1px solid var(--border-soft);
+      background: #050509;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .banner-img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      filter: brightness(.95) contrast(1.05);
+    }
+
+    /* HERO ARTÍCULOS */
+    .hero-articulos {
+      border-radius: 30px;
+      padding: 30px 28px 32px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(circle at top left, rgba(245, 227, 179, 0.10), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(98, 89, 255, 0.28), transparent 55%),
+        linear-gradient(135deg, #050509, #08081a, #0b0b21);
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 1020px;      /* <-- CORRECCIÓN */
+      white-space: nowrap;    /* <-- CORRECCIÓN */
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      padding: 6px 13px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(245, 227, 179, 0.55);
+      background: rgba(5,5,9,0.65);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      backdrop-filter: blur(12px);
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(245,227,179,0.9);
+    }
+
+    .hero-articulos h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 2.8rem);
+      font-weight: 500;
+      letter-spacing: .04em;
+      white-space: nowrap; /* <-- CORRECCIÓN */
+    }
+
+    .hero-divider {
+      width: 56px;
+      height: 1px;
+      background: rgba(245,227,179,0.55);
+      margin: 6px 0 14px;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: var(--accent);
+      max-width: 620px;
+      line-height: 1.65;
+      white-space: normal;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+      white-space: normal;
+    }
+
+    .hero-tag {
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(5,5,12,0.78);
+      color: var(--text-muted);
+      letter-spacing: .04em;
+    }
+
+    /* CARD ARTÍCULOS */
+    .card {
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(135deg, var(--card), #0b0b14);
+      padding: 22px;
+      margin-bottom: 26px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card h2 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      white-space: normal;
+    }
+
+    .article {
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: grid;
+      gap: 10px;
+    }
+
+    .article-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: var(--text-main);
+    }
+
+    .article-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      white-space: normal;
+    }
+
+    .article a {
+      font-size: 14px;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(245,227,179,0.4);
+      padding-bottom: 1px;
+      width: fit-content;
+    }
+
+    .article a:hover {
+      color: var(--accent-strong);
+      border-color: var(--accent-strong);
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    @media (max-width: 720px) {
+      .hero-inner {
+        max-width: 100%;
+        white-space: normal;
+      }
+      .hero-articulos { padding: 24px 18px; }
+      .card { padding: 20px 18px; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <ul class="navbar-list">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="cuentos.html">Cuentos</a></li>
+        <li><a href="articulos.html" class="active">Artículos</a></li>
+        <li><a href="tesina.html">Tesina</a></li>
+        <li><a href="sobrelibros.html">Sobre libros</a></li>
+        <li><a href="servicios.html">Servicios de corrección</a></li>
+        <li><a href="clases.html">Clases de escritura creativa</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page">
+
+    <div class="banner">
+      <img src="kuitca-banner.jpg" class="banner-img">
+    </div>
+
+    <!-- HERO -->
+    <header class="hero-articulos">
+      <div class="hero-inner">
+
+        <span class="badge">
+          <span class="dot"></span>
+          Artículos · Cultura
+        </span>
+
+        <h1>Lecturas culturales, reseñas y obsesiones.</h1>
+
+        <div class="hero-divider"></div>
+
+        <p class="hero-desc">
+          En estos textos pienso series, películas, libros y temas culturales desde una mirada personal,
+          atenta a los matices afectivos y a cómo las historias conversan con nuestra vida cotidiana.
+        </p>
+
+      </div>
+    </header>
+
+    <!-- LISTA ARTÍCULOS -->
+    <main>
+
+      <article class="card">
+        <h2>Artículos y reseñas</h2>
+
+        <div class="article">
+          <div class="article-title">Normal People: cuando un vínculo no solo son dos personas</div>
+          <div class="article-desc">
+            Sobre la serie basada en la novela de Sally Rooney: una historia
+            donde el amor y la clase social tensan cada vínculo.
+          </div>
+          <a href="articulo1.html">Leer artículo</a>
+        </div>
+
+        <div class="article">
+          <div class="article-title">¿De qué se trata Los Soprano?</div>
+          <div class="article-desc">
+            Un acercamiento a la serie que reformuló la ficción televisiva.
+          </div>
+          <a href="articulo2.html">Leer artículo</a>
+        </div>
+
+        <div class="article">
+          <div class="article-title">Sobre Frankenstein, la nueva película de Guillermo del Toro</div>
+          <div class="article-desc">
+            Expectativas, monstruos y una lectura sin fuerza del mito clásico.
+          </div>
+          <a href="articulo3.html">Leer artículo</a>
+        </div>
+
+        <div class="article">
+          <div class="article-title">Intento fallido de ser Carrie Bradshaw de Sex and the City</div>
+          <div class="article-desc">
+            Sobre deseos, aspiraciones y roles queer en la cultura pop.
+          </div>
+          <a href="articulo4.html">Leer artículo</a>
+        </div>
+
+      </article>
+
+    </main>
+
+    <footer>
+      © <span id="year"></span> Milton Adriel Penna · Artículos
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
