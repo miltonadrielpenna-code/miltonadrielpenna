@@ -344,24 +344,39 @@
       border-color: var(--accent-strong);
     }
 
-    /* ---------------- CARD LETRA (Wos - Indio) ---------------- */
+    /* ---------------- CARD CITA (Wos - Indio, igual a T. S.) ---------------- */
 
-    .card-lyric .lyric-block {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: 15px;
-      color: #e5e5f0;
-      line-height: 1.6;
-      white-space: pre-line;
-      margin-bottom: 4px;
+    .card-quote {
+      padding-top: 18px;
+      padding-bottom: 18px;
+      background: #050509;
     }
 
-    .card-lyric .lyric-author {
-      text-align: right;
+    .quote-dark {
       font-family: var(--font-serif);
-      font-size: 13px;
-      color: #e5e5f0;
-      margin-top: -4px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 90%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quote-divider {
+      width: 46px;
+      height: 1px;
+      background: rgba(245, 227, 179, 0.45);
+      margin: 0 auto 12px;
+    }
+
+    .quote-author {
+      margin-top: 8px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: right;
+      padding-right: 6px;
     }
 
     footer {
@@ -529,19 +544,18 @@
           </div>
         </article>
 
-        <article class="card card-lyric">
-          <div class="lyric-block">
-Quemarás el dolor
-en el fuego más sagrado de hoy.
-Y buscarás el amor
-en un rastro ciego de lo que ya no sos.
-Y quemarás el rencor
-en el fuego de un infierno precoz.
-Y buscarás esa voz
-que te recuerde para siempre quién sos.
-          </div>
-          <div class="lyric-author">
-            Wos – Indio
+        <article class="card card-quote">
+          <div class="quote-dark">
+            <div class="quote-divider"></div>
+            Quemarás el dolor<br>
+            en el fuego más sagrado de hoy.<br>
+            Y buscarás el amor<br>
+            en un rastro ciego de lo que ya no sos.<br>
+            Y quemarás el rencor<br>
+            en el fuego de un infierno precoz.<br>
+            Y buscarás esa voz<br>
+            que te recuerde para siempre quién sos.
+            <div class="quote-author">Wos – Indio</div>
           </div>
         </article>
 
