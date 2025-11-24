@@ -124,6 +124,16 @@
       box-shadow: 0 0 0 1px rgba(245, 227, 179, 0.45);
     }
 
+    .navbar-list li::before {
+      content: "•";
+      color: var(--accent);
+      margin: 0 6px 0 2px;
+    }
+
+    .navbar-list li:first-child::before {
+      content: "";
+    }
+
     /* ---------------- BANNER ---------------- */
 
     .banner {
@@ -162,7 +172,6 @@
       flex-direction: column;
       gap: 14px;
       max-width: 1020px;
-      white-space: nowrap;
     }
 
     .badge {
@@ -194,7 +203,7 @@
       font-weight: 500;
       letter-spacing: 0.04em;
       color: var(--text-main);
-      white-space: nowrap;
+      white-space: normal;
     }
 
     .hero-divider {
@@ -209,29 +218,9 @@
       color: var(--accent);
       max-width: 700px;
       line-height: 1.65;
-      font-family: var(--font-sans);
-      white-space: normal;
     }
 
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 8px;
-      white-space: normal;
-    }
-
-    .hero-tag {
-      font-size: 12px;
-      padding: 5px 12px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(5, 5, 12, 0.78);
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-    }
-
-    /* ---------------- CARD TESINA ---------------- */
+    /* ---------------- CARD ---------------- */
 
     .card {
       border-radius: var(--radius-card);
@@ -319,27 +308,12 @@
 
       .hero-inner {
         max-width: 100%;
-        white-space: normal;
-      }
-
-      .hero-tesina h1 {
-        white-space: normal;
       }
 
       .card {
         padding: 20px 18px;
       }
     }
-
-.navbar-list li::before {
-  content: "•";
-  color: var(--accent);
-  margin: 0 6px 0 2px;
-}
-
-.navbar-list li:first-child::before {
-  content: "";
-}
 
   </style>
 </head>
@@ -376,7 +350,7 @@
           Tesina · Trabajo académico
         </span>
 
-        <h1>El terror político como trauma.</h1>
+        <h1>El terror político como trauma: La dictadura en dos cuentos de Mariana Enríquez</h1>
 
         <div class="hero-divider"></div>
 
@@ -393,52 +367,68 @@
 
       <!-- COLUMNA IZQUIERDA -->
       <section class="column">
+
+        <!-- --- CAMPO PRINCIPAL --- -->
         <article class="card">
-          <h2>Tesina</h2>
-          <h3>El terror político como trauma en la narrativa de Mariana Enríquez</h3>
+          <h2>Resumen</h2>
+
           <p>
-            Este trabajo analiza cómo se representa la dictadura argentina en dos cuentos de Mariana Enríquez:
-            <em>"La hostería"</em> y <em>"La casa de Adela"</em>. Me interesa pensar cómo lo fantástico, el terror
-            y las imágenes de lo siniestro permiten abordar un pasado traumático que todavía organiza la experiencia
-            presente.
+            El presente estudio es un análisis de la representación del golpe de estado que sufrió Argentina entre los años
+            1976 y 1983 en “La hostería” (2016) y “Los himnos de las hienas” (2024) de la escritora Mariana Enríquez.
+            Primero contextualiza su literatura dentro de lo que se denominó “nueva narrativa argentina”, que abarca a los
+            escritores hijos de desaparecidos, según su generación. Luego se posiciona en el género de terror y en el terror
+            argentino para entender cómo son posibles estos relatos y cómo se pueden basar en la realidad. Por último, se
+            trata el concepto de literatura comparada y trauma para exponer los vínculos entre los recursos literarios de
+            los cuentos y el concepto psicológico, elaborando de esta forma la hipótesis que sustenta el trabajo. Entonces,
+            se explica la trama de los cuentos, se realiza el análisis y se hace una síntesis de los elementos expuestos
+            para demostrar que estas creaciones literarias representan como un trauma el momento histórico.
           </p>
         </article>
 
+        <!-- 🔶 RECUADRO DE PDF (BOTÓN DORADO) -->
         <article class="card">
-          <h2>Lecturas y enfoque</h2>
-          <p>
-            La tesina cruza herramientas de la teoría literaria, estudios sobre memoria y trauma, y lecturas sobre
-            dictadura en la literatura argentina. Trabajo con:
+          <h2>Tesina completa</h2>
+
+          <p style="margin-top:6px; color: var(--text-muted);">
+            PDF — 35 páginas — 2025
           </p>
-          <ul>
-            <li>Conceptos de trauma, duelo y repetición.</li>
-            <li>La idea de lo siniestro y lo espectral en la narrativa.</li>
-            <li>La relación entre espacio doméstico, cuerpos y violencia política.</li>
-          </ul>
+
+          <div style="
+            width: 70px;
+            height: 1px;
+            background: rgba(245,227,179,0.45);
+            margin: 16px 0 20px 0;">
+          </div>
+
+          <a href="pennamiltontesina.pdf" target="_blank" style="
+            display: inline-block;
+            padding: 10px 22px;
+            font-size: 14px;
+            color: #050509;
+            background: var(--accent);
+            border-radius: 999px;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: all .2s ease;">
+            Descargar tesina en PDF
+          </a>
         </article>
+
       </section>
 
       <!-- COLUMNA DERECHA -->
       <aside class="column">
+
         <article class="card">
           <h2>Sobre el proceso</h2>
           <p>
             Es una investigación que condensa varios años de lecturas, escritura y reescritura.
-            La tesina fue el cierre de mi formación como corrector de textos y, al mismo tiempo,
-            una forma de procesar mi interés por las marcas que deja la violencia estatal en
-            la vida cotidiana.
+            Fue el cierre de mi formación como corrector de textos y también una forma de procesar
+            mi interés por las marcas que deja la violencia estatal en la vida cotidiana.
           </p>
         </article>
 
-        <article class="card">
-          <h2>Disponibilidad</h2>
-          <p>
-            Si te interesa leer la tesina completa o conversar sobre el tema, podés escribirme y te comparto el trabajo.
-          </p>
-          <p>
-            Estoy abierto a charlas, clases o proyectos donde este cruce entre literatura, memoria y terror pueda aportar algo.
-          </p>
-        </article>
       </aside>
 
     </main>
