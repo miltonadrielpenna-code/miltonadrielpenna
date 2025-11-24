@@ -148,28 +148,27 @@
       box-shadow: var(--shadow-soft);
       background: #050509;
     }
-
-    .banner-img {
-      width: 100%;
-      max-height: 360px;
-      object-fit: cover;
-      filter: brightness(0.95) contrast(1.05);
-      transform: scale(1.02);
-    }
+.banner-img {
+  width: 100%;
+  max-height: 300px;          /* igual que en Cuentos */
+  object-fit: cover;
+  filter: brightness(.95) contrast(1.05);
+  /* eliminamos el transform para que no “zoomee” más */
+}
 
     /* ---------------- HERO (estilo similar a Clases) ---------------- */
 
-    header {
-      border-radius: 30px;
-      padding: 30px 28px 32px;
-      margin-bottom: 30px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background:
-        radial-gradient(circle at top left, rgba(245, 227, 179, 0.10), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(98, 89, 255, 0.28), transparent 55%),
-        linear-gradient(135deg, #050509, #08081a, #0b0b21);
-    }
+
+header {
+  border-radius: 30px;
+  padding: 30px 28px 32px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at top left, rgba(245, 227, 179, 0.10), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(98, 89, 255, 0.28), transparent 55%),
+    linear-gradient(135deg, #050509, #08081a, #0b0b21);
+}
 
     .header-inner {
       display: flex;
@@ -449,10 +448,9 @@
         font-size: 12px;
         padding: 5px 7px;
       }
-
-      header {
-        padding: 24px 18px 26px;
-      }
+header {
+    padding: 24px 32px 28px;
+}
 
       .header-inner {
         max-width: 100%;
@@ -525,13 +523,34 @@
         <article class="card">
           <h3>Sobre mí</h3>
           <p>
-            Soy Milton: escritor, corrector de textos y lector obsesivo. Este sitio reúne mis ficciones,
-            mis artículos culturales, reseñas de libros y muestras de procesos creativos.
+Soy Milton: escritor, corrector de textos y lector obsesivo.
           </p>
           <p>
-            También encontrarás mis servicios de corrección e información sobre las clases de escritura.
+¡Bienvenido a mi página web!
+          </p>
+          <p>
+	Este sitio reúne mis ficciones, mis artículos culturales, reseñas de libros y muestras de procesos creativos.
+          </p>
+          <p>
+	En "Cuentos" vas a encontrar mis relatos que mezclan realismo psicológico, terror y crimen.
+          </p>
+          <p>
+	En "Artículos" escribo sobre series, películas y la cultura que me rodea.
+          </p>
+          <p>
+“Tesina” reúne mi investigación sobre la dictadura en la obra de Mariana Enríquez, mi proyecto final de carrera.
+          </p>
+          <p>
+En "Sobre libros" guardo reseñas, lecturas recientes y los textos que me formaron como autor.
+          </p>
+          <p>
+            Por último, en la secciones "Servicios de corrección" y "Clases de escritura creativa" hay información sobre el acompañamiento que le puedo ofrecer a escritores, estudiantes, redactores y a quienes necesitan claridad, precisión y una voz afinada en sus textos.
+          </p>
+          <p>
+	¡Espero que disfrutes de este sitio tanto como a mí me gusta construirlo!
           </p>
         </article>
+
 
         <article class="card">
           <h2>Mi enfoque</h2>
