@@ -45,7 +45,7 @@
 
     .page { width: 100%; max-width: 1040px; }
 
-    /* ------------ NAVBAR (copiada de Tesina) ------------ */
+    /* ------------ NAVBAR ------------ */
 
     .navbar {
       position: fixed;
@@ -113,6 +113,18 @@
       box-shadow: 0 0 0 1px rgba(245,227,179,.45);
     }
 
+    /* Puntos del menú */
+
+    .navbar-list li::before {
+      content: "•";
+      color: var(--accent);
+      margin: 0 6px 0 2px;
+    }
+
+    .navbar-list li:first-child::before {
+      content: "";
+    }
+
     /* ------------ BANNER ------------ */
 
     .banner {
@@ -131,7 +143,7 @@
       filter: brightness(.95) contrast(1.05);
     }
 
-    /* ------------ HERO SOBRE LIBROS (FORMATO TESINA) ------------ */
+    /* ------------ HERO SOBRE LIBROS ------------ */
 
     header {
       position: relative;
@@ -147,7 +159,6 @@
       overflow: hidden;
     }
 
-    /* Reflejo suave arriba, como en Tesina */
     header::before {
       content: "";
       position: absolute;
@@ -163,8 +174,6 @@
       position: relative;
       z-index: 1;
     }
-
-    /* SÓCALO LARGO SUPERIOR */
 
     .hero-top {
       width: 100%;
@@ -210,7 +219,6 @@
       line-height: 1.55;
     }
 
-    /* Divisor igual al de Tesina */
     .hero-divider {
       width: 64px;
       height: 1px;
@@ -293,6 +301,45 @@
       color: var(--text-muted);
     }
 
+    /* ----- CITA FORMATO TAYLOR SWIFT ----- */
+
+    .card-quote {
+      padding-top: 18px;
+      padding-bottom: 18px;
+      background: #050509;
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      margin-top: 16px;
+    }
+
+    .quote-dark {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 90%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quote-divider {
+      width: 46px;
+      height: 1px;
+      background: rgba(245, 227, 179, 0.45);
+      margin: 0 auto 12px;
+    }
+
+    .quote-author {
+      margin-top: 8px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: right;
+      padding-right: 6px;
+    }
+
     /* FOOTER */
 
     footer {
@@ -322,18 +369,6 @@
         font-size: 12px;
         padding: 5px 7px;
       }
-    }
-
-    /* Puntos del menú, igual que en Tesina */
-
-    .navbar-list li::before {
-      content: "•";
-      color: var(--accent);
-      margin: 0 6px 0 2px;
-    }
-
-    .navbar-list li:first-child::before {
-      content: "";
     }
 
   </style>
@@ -370,13 +405,13 @@
         <span>Sobre libros · Lecturas</span>
       </div>
 
-      <h1>Portal de reseñas sobre libros.</h1>
+      <h1>Portal de reseñas literarias.</h1>
 
       <div class="hero-divider"></div>
 
       <p class="quote">
-        Escribo sobre las obras que más construyen mi mirada de la realidad,<br>
-        los que afilan el pulso con el que escribo.
+       Sobre los libros que modifican mi modo de observar,<br>
+        los que forman la manera en que escribo.
       </p>
     </header>
 
@@ -388,16 +423,16 @@
 
         <article class="card">
           <h2>La lectura como práctica</h2>
-          <h3>Leer es el alimento de los escritores</h3>
+          <h3>Leer como quién respira</h3>
 
-          <p>No son reseñas técnicas. Escribo lecturas: conexiones, breves análisis, frases que me quedan.</p>
+          <p>No son reseñas técnicas, más bien son impresiones: conexiones, construcciones de sentido metafórico y ético.</p>
           <p>A veces son diarios de lectura; otras, ensayos breves o un pensamiento que se construye sobre otros bloques.</p>
         </article>
 
         <!-- LIBROS FUNDANTES -->
         <article class="card">
-          <h2>Libros fundantes.</h2>
-          <h3>Textos que me formaron como lector.</h3>
+          <h2>Libros fundantes</h2>
+          <h3>Textos que me formaron como lector</h3>
 
           <ul class="list">
             <li>
@@ -422,7 +457,7 @@
 
         <article class="card">
           <h2>Lecturas destacadas</h2>
-          <h3>Libros recientes</h3>
+          <h3>Lo más reciente</h3>
 
           <ul class="list">
             <li>
@@ -448,12 +483,12 @@
         <article class="card">
           <h3>No solo se leen los libros</h3>
 
-          <p>Una película, una serie, un álbum pueden ser material creativo.</p>
+          <p>Una película, una serie o un álbum pueden ser material creativo,</p>
           <p>Archivo en mi mente la genialidad de algún artista o alguna escena.</p>
-          <p>Tarde o temprano.</p>
-          <p>Cuando menos lo espero.</p>
-          <p>Eso que me enamoró.</p>
-          <p>Sale otra vez de mí transformado.</p>
+          <p>Tarde o temprano,</p>
+          <p>cuando menos lo espero:</p>
+          <p>eso que me enamoró</p>
+          <p>sale de mí transformado.</p>
         </article>
 
       </section>
@@ -471,6 +506,16 @@
           <p>Un mapa para volver a lecturas anteriores y seguir conectando ideas.</p>
         </article>
 
+        <!-- CITA ORWELL EN FORMATO TS -->
+        <article class="card card-quote">
+          <div class="quote-dark">
+            <div class="quote-divider"></div>
+            “Los mejores libros, entendió,<br>
+            son los que te cuentan lo que ya sabías.”
+            <div class="quote-author">George Orwell, <em>1984</em></div>
+          </div>
+        </article>
+
       </aside>
 
     </main>
@@ -486,3 +531,4 @@
 
 </body>
 </html>
+
