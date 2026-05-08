@@ -427,32 +427,33 @@
           </div>
         </div>
 
-        <div class="contact-form">
-          <div class="form-group">
-            <label>Nombre</label>
-            <input type="text" placeholder="Tu nombre completo" />
-          </div>
-          <div class="form-group">
-            <label>Correo electrónico</label>
-            <input type="email" placeholder="tu@correo.com" />
-          </div>
-          <div class="form-group">
-            <label>Tipo de texto</label>
-            <select>
-              <option value="">Seleccioná una opción</option>
-              <option>Texto literario / narrativa</option>
-              <option>Texto académico</option>
-              <option>Contenido editorial</option>
-              <option>Otro</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Mensaje</label>
-            <textarea placeholder="Contame sobre tu proyecto, extensión aproximada del texto y plazos..."></textarea>
-          </div>
-          <a href="mailto:pennamiltonadriel@gmail.com" class="btn-primary" style="text-align:center; text-decoration:none; padding:12px 28px; display:block; border-radius:8px;">
-            Enviar consulta
-          </a>
+<form action="https://formspree.io/f/xaqvpnje" method="POST" class="contact-form">
+  <div class="form-group">
+    <label>Nombre</label>
+    <input type="text" name="nombre" placeholder="Tu nombre completo" required />
+  </div>
+  <div class="form-group">
+    <label>Correo electrónico</label>
+    <input type="email" name="email" placeholder="tu@correo.com" required />
+  </div>
+  <div class="form-group">
+    <label>Tipo de texto</label>
+    <select name="tipo_de_texto" required>
+      <option value="">Seleccioná una opción</option>
+      <option value="literario">Texto literario / narrativa</option>
+      <option value="academico">Texto académico</option>
+      <option value="editorial">Contenido editorial</option>
+      <option value="otro">Otro</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Mensaje</label>
+    <textarea name="mensaje" placeholder="Contame sobre tu proyecto, extensión aproximada del texto y plazos..." required></textarea>
+  </div>
+  <button type="submit" class="btn-primary" style="text-align:center; padding:12px 28px; display:block; border-radius:8px; width:100%; cursor:pointer; font-family:inherit; font-size:15px;">
+    Enviar consulta
+  </button>
+</form>
         </div>
       </div>
     </div>
