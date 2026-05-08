@@ -1,0 +1,475 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #16161f;
+    --blue-dark: #1a2a4a;
+    --blue-mid: #1e3a6e;
+    --blue-accent: #2d5fa6;
+    --blue-light: #4a87d4;
+    --blue-bright: #6fa3e0;
+    --text-primary: #f0f0f5;
+    --text-secondary: #a0a0b8;
+    --text-muted: #60607a;
+    --border: rgba(45, 95, 166, 0.25);
+    --border-hover: rgba(74, 135, 212, 0.5);
+  }
+
+  body { background: var(--bg); color: var(--text-primary); font-family: var(--font-sans, 'Inter', sans-serif); }
+
+  .site-wrapper { min-height: 100vh; background: var(--bg); }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10, 10, 15, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-brand {
+    font-size: 15px; font-weight: 500; color: var(--text-primary);
+    letter-spacing: 0.02em;
+  }
+  .nav-brand span { color: var(--blue-bright); font-weight: 400; font-size: 13px; display: block; }
+
+  .nav-links { display: flex; gap: 0.25rem; }
+
+  .nav-link {
+    background: none; border: none; cursor: pointer;
+    font-size: 14px; color: var(--text-secondary);
+    padding: 8px 16px; border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+    font-family: inherit;
+  }
+  .nav-link:hover { color: var(--text-primary); background: rgba(45, 95, 166, 0.15); }
+  .nav-link.active { color: var(--blue-bright); background: rgba(45, 95, 166, 0.2); }
+
+  .page { display: none; animation: fadeIn 0.3s ease; }
+  .page.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .hero {
+    min-height: calc(100vh - 64px);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 4rem 2rem;
+    position: relative; overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(29, 58, 110, 0.35) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--blue-bright); margin-bottom: 1.5rem;
+    border: 0.5px solid var(--border-hover);
+    padding: 6px 16px; border-radius: 100px; display: inline-block;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 500; line-height: 1.15;
+    color: var(--text-primary); margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero h1 em { color: var(--blue-bright); font-style: normal; }
+
+  .hero-subtitle {
+    font-size: 17px; color: var(--text-secondary);
+    max-width: 520px; line-height: 1.7; margin-bottom: 2.5rem;
+  }
+
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  }
+
+  .btn-primary {
+    background: var(--blue-accent); color: #fff;
+    border: none; padding: 12px 28px; border-radius: 8px;
+    font-size: 15px; font-weight: 500; cursor: pointer;
+    font-family: inherit; transition: background 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover { background: var(--blue-light); }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .btn-ghost {
+    background: none; color: var(--text-secondary);
+    border: 0.5px solid var(--border-hover); padding: 12px 28px; border-radius: 8px;
+    font-size: 15px; cursor: pointer; font-family: inherit;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--text-primary); border-color: var(--blue-bright); }
+
+  .section { padding: 5rem 2rem; max-width: 840px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--blue-bright); margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem; font-weight: 500; color: var(--text-primary);
+    margin-bottom: 0.75rem; letter-spacing: -0.01em;
+  }
+
+  .divider {
+    width: 48px; height: 2px;
+    background: linear-gradient(90deg, var(--blue-accent), transparent);
+    margin-bottom: 2.5rem;
+  }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+
+  .about-text p {
+    font-size: 16px; color: var(--text-secondary); line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-sidebar {}
+
+  .sidebar-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-card h4 {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--blue-bright); margin-bottom: 1rem;
+  }
+
+  .edu-item { margin-bottom: 1.25rem; }
+  .edu-item:last-child { margin-bottom: 0; }
+
+  .edu-title {
+    font-size: 14px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px;
+  }
+  .edu-place {
+    font-size: 12px; color: var(--text-muted); margin-bottom: 1px;
+  }
+  .edu-year { font-size: 11px; color: var(--blue-accent); }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+  }
+
+  .service-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1.75rem;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--blue-accent), var(--blue-light));
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .service-card:hover { border-color: var(--border-hover); background: var(--surface2); }
+  .service-card:hover::before { opacity: 1; }
+
+  .service-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(45, 95, 166, 0.2);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    color: var(--blue-bright); font-size: 20px;
+  }
+
+  .service-card h3 {
+    font-size: 16px; font-weight: 500; color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .service-card p {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+  }
+
+  .budget-banner {
+    margin-top: 2rem;
+    background: rgba(29, 58, 110, 0.3);
+    border: 0.5px solid var(--border-hover);
+    border-radius: 12px; padding: 1.5rem 2rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .budget-banner i { font-size: 24px; color: var(--blue-bright); flex-shrink: 0; }
+  .budget-banner p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+  .budget-banner strong { color: var(--text-primary); }
+
+  .portfolio-grid {
+    display: grid; grid-template-columns: 1fr; gap: 1rem;
+  }
+
+  .portfolio-item {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1.75rem;
+    display: grid; grid-template-columns: auto 1fr; gap: 1.25rem;
+    align-items: start;
+    transition: border-color 0.2s;
+  }
+  .portfolio-item:hover { border-color: var(--border-hover); }
+
+  .portfolio-tag {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--blue-bright); background: rgba(45, 95, 166, 0.15);
+    border: 0.5px solid rgba(74, 135, 212, 0.3);
+    padding: 4px 12px; border-radius: 100px; white-space: nowrap;
+    align-self: start;
+  }
+
+  .portfolio-info h3 {
+    font-size: 16px; font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;
+  }
+  .portfolio-info p {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0.75rem;
+  }
+
+  .tesina-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; color: var(--blue-bright);
+    text-decoration: none;
+    border: 0.5px solid rgba(74, 135, 212, 0.35); border-radius: 6px;
+    padding: 5px 12px; transition: background 0.2s;
+  }
+  .tesina-link:hover { background: rgba(45, 95, 166, 0.2); }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+
+  .contact-info p {
+    font-size: 16px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem;
+  }
+
+  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .contact-link {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--surface); border: 0.5px solid var(--border);
+    border-radius: 10px; padding: 1rem 1.25rem;
+    text-decoration: none; color: var(--text-primary);
+    font-size: 14px; transition: border-color 0.2s, background 0.2s;
+  }
+  .contact-link:hover { border-color: var(--border-hover); background: var(--surface2); }
+  .contact-link i { font-size: 18px; color: var(--blue-bright); }
+  .contact-link span { color: var(--text-secondary); font-size: 13px; display: block; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 13px; color: var(--text-secondary); }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 8px; padding: 10px 14px;
+    color: var(--text-primary); font-family: inherit; font-size: 14px;
+    outline: none; transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--blue-accent); }
+  .form-group select option { background: #111118; }
+
+  .form-group textarea { min-height: 120px; }
+
+  .footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2rem; text-align: center;
+    font-size: 13px; color: var(--text-muted);
+  }
+</style>
+
+<div class="site-wrapper">
+
+  <nav>
+    <div class="nav-brand">
+      Milton Adriel Penna
+      <span>Corrector de textos</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link active" onclick="goTo('inicio', this)">Inicio</button>
+      <button class="nav-link" onclick="goTo('servicios', this)">Servicios</button>
+      <button class="nav-link" onclick="goTo('portfolio', this)">Portfolio</button>
+      <button class="nav-link" onclick="goTo('contacto', this)">Contacto</button>
+    </div>
+  </nav>
+
+  <div id="inicio" class="page active">
+    <div class="hero">
+      <div class="hero-eyebrow">Corrector de textos · Buenos Aires</div>
+      <h1>Precisión lingüística<br>al servicio de <em>tu texto</em></h1>
+      <p class="hero-subtitle">Escritor y corrector especialista en narrativa. Acompaño manuscritos, textos editoriales y contenidos académicos con criterio literario y rigor profesional.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="goTo('servicios', document.querySelectorAll('.nav-link')[1])">Ver servicios</button>
+        <button class="btn-ghost" onclick="goTo('contacto', document.querySelectorAll('.nav-link')[3])">Solicitar presupuesto</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="servicios" class="page">
+    <div class="section">
+      <div class="section-label">Qué ofrezco</div>
+      <h2 class="section-title">Servicios</h2>
+      <div class="divider"></div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-book" aria-hidden="true"></i></div>
+          <h3>Corrección de estilo literario</h3>
+          <p>Trabajo sobre la coherencia narrativa, el ritmo, la voz y la fluidez del texto, respetando siempre la intención del autor.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-typography" aria-hidden="true"></i></div>
+          <h3>Corrección ortotipográfica</h3>
+          <p>Revisión exhaustiva de ortografía, puntuación, uso de mayúsculas y criterios tipográficos según normativa vigente.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-school" aria-hidden="true"></i></div>
+          <h3>Corrección de textos académicos</h3>
+          <p>Adecuación al registro formal, normativas de citación y convenciones propias del género académico y científico.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ti ti-pencil" aria-hidden="true"></i></div>
+          <h3>Corrección de contenidos editoriales</h3>
+          <p>Revisión de artículos, crónicas, reseñas y materiales de divulgación para publicaciones impresas y digitales.</p>
+        </div>
+      </div>
+
+      <div class="budget-banner">
+        <i class="ti ti-clock" aria-hidden="true"></i>
+        <p><strong>Presupuestos en menos de 24 horas.</strong> Enviame tu texto o describí tu proyecto y te respondo con una propuesta personalizada.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="portfolio" class="page">
+    <div class="section">
+      <div class="section-label">Formación y experiencia</div>
+      <h2 class="section-title">Portfolio</h2>
+      <div class="divider"></div>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <span class="portfolio-tag">Formación oficial</span>
+          <div class="portfolio-info">
+            <h3>Técnico Superior en Corrección de Textos</h3>
+            <p>Instituto Superior de Letras Eduardo Mallea · 2022–2025. Formación técnica integral en corrección, con foco en lengua, estilo y normativa editorial.</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <span class="portfolio-tag">Especialización</span>
+          <div class="portfolio-info">
+            <h3>Diplomatura en Corrección de Textos Literarios</h3>
+            <p>CAL – Correctología y Asesoramiento Lingüístico · 2026. Profundización en criterios específicos de la corrección literaria y narrativa.</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <span class="portfolio-tag">Escritura creativa</span>
+          <div class="portfolio-info">
+            <h3>Talleres literarios</h3>
+            <p>Taller literario con Ana Claudia Díaz (online, 2021–2022) · Taller de lectura y escritura en el Centro Cultural San Martín (presencial, 2023) · Taller de novela corta en Casa de Letras (online, 2024).</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <span class="portfolio-tag">Investigación</span>
+          <div class="portfolio-info">
+            <h3>Tesina: El terror político como trauma</h3>
+            <p>Análisis de la representación de la última dictadura argentina en "La hostería" (2016) y "Los himnos de las hienas" (2024) de Mariana Enríquez.</p>
+            <a href="https://tinyurl.com/yc42va8u" class="tesina-link" target="_blank">
+              <i class="ti ti-external-link" style="font-size:14px" aria-hidden="true"></i>
+              Leer tesina
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contacto" class="page">
+    <div class="section">
+      <div class="section-label">Hablemos</div>
+      <h2 class="section-title">Contacto</h2>
+      <div class="divider"></div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>Priorizó el diálogo abierto y el respeto mutuo. Si tenés un proyecto en mente, escribime y en menos de 24 horas tenés un presupuesto personalizado.</p>
+          <div class="contact-links">
+            <a href="mailto:pennamiltonadriel@gmail.com" class="contact-link">
+              <i class="ti ti-mail" aria-hidden="true"></i>
+              <div>
+                <span>Correo electrónico</span>
+                pennamiltonadriel@gmail.com
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/milton-adriel" class="contact-link" target="_blank">
+              <i class="ti ti-brand-linkedin" aria-hidden="true"></i>
+              <div>
+                <span>LinkedIn</span>
+                milton-adriel
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre completo" />
+          </div>
+          <div class="form-group">
+            <label>Correo electrónico</label>
+            <input type="email" placeholder="tu@correo.com" />
+          </div>
+          <div class="form-group">
+            <label>Tipo de texto</label>
+            <select>
+              <option value="">Seleccioná una opción</option>
+              <option>Texto literario / narrativa</option>
+              <option>Texto académico</option>
+              <option>Contenido editorial</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Mensaje</label>
+            <textarea placeholder="Contame sobre tu proyecto, extensión aproximada del texto y plazos..."></textarea>
+          </div>
+          <a href="mailto:pennamiltonadriel@gmail.com" class="btn-primary" style="text-align:center; text-decoration:none; padding:12px 28px; display:block; border-radius:8px;">
+            Enviar consulta
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    © 2026 Milton Adriel Penna · Corrector de textos · Buenos Aires, Argentina
+  </footer>
+
+</div>
+
+<script>
+function goTo(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
